@@ -18,13 +18,7 @@ namespace api_de_verdade.Data.Contexts
             builder.Entity<Category>().Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Category>().Property(c => c.Name).IsRequired().HasMaxLength(30);
             builder.Entity<Category>().HasMany(c =>  c.Products).WithOne(p => p.Category).HasForeignKey(p => p.CategoryId);
-
-            builder.Entity<Category>().HasData
-            (
-                new Category { Id = 100, Name = "Fruits and Vegetables" },
-                new Category { Id = 101, Name = "Dairy" }
-            );
-
+           
 
             builder.Entity<Product>().HasKey(p => p.Id);
             builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
