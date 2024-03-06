@@ -1,5 +1,7 @@
-﻿using api_de_verdade.Domain.Models;
+﻿using api_de_verdade.Domain.Dtos;
+using api_de_verdade.Domain.DTOs;
 using api_de_verdade.Domain.Services;
+using api_de_verdade.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_de_verdade.Controllers
@@ -15,9 +17,32 @@ namespace api_de_verdade.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        public async Task<IEnumerable<GetCategoryDto>> GetCategoriesAsync()
         {
             return await _categoryService.ListAsync();
         }
+
+        [HttpGet("{id}")]
+        public async Task<GetCategoryDto> GetCategoryById(int id)
+        {
+            return await _categoryService.GetByIdAsync(id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetCategoryAsync([FromBody] CreateCategoryDto createCategoryDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+            
+            var result = await _categoryService.CreateAsync(createCategoryDto);
+
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Created(result.Message, result.Resource);
+        }
+
     }
 }

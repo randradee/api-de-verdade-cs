@@ -1,6 +1,8 @@
+using AutoMapper;
 using api_de_verdade.Data.Contexts;
 using api_de_verdade.Domain.Repositories;
 using api_de_verdade.Domain.Services;
+using api_de_verdade.Mapping;
 using api_de_verdade.Repositories;
 using api_de_verdade.Services;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 // config de injeção de dependência - categories
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// config do automapper
+builder.Services.AddAutoMapper(typeof(CategoryProfile));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

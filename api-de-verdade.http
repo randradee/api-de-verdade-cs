@@ -3,3 +3,9 @@
 GET {{api_de_verdade_HostAddress}}/categories/
 Accept: application/json
 ###
+
+GET {{api_de_verdade_HostAddress}}/categories/:id
+###
+
+POST {{api_de_verdade_HostAddress}}/categories
+###
