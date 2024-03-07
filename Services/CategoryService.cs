@@ -92,5 +92,27 @@ namespace api_de_verdade.Services
             }
 
         }
+
+        public async Task<Response<GetCategoryDto>> DeleteAsync(int id)
+        {
+            var categoryToRemove = await _categoryRepository.FindByIdAsync(id);
+
+            if (categoryToRemove == null)
+                return new Response<GetCategoryDto>("Categoria não encontrada");
+
+            try
+            {
+                _categoryRepository.DeleteAsync(categoryToRemove);
+                await _unitOfWork.CompleteAsync();
+
+                var response = _mapper.Map<Category, GetCategoryDto>(categoryToRemove);
+
+                return new Response<GetCategoryDto>(response);
+            }
+            catch (Exception ex)
+            {
+                return new Response<GetCategoryDto>($"erro: {ex.Message}");
+            }
+        }
     }
 }

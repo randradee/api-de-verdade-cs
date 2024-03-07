@@ -50,5 +50,10 @@ namespace api_de_verdade.Repositories
 
             await _context.SaveChangesAsync();
         }
+
+        public void DeleteAsync(Category category)
+        {
+            _context.Categories.Remove(category);
+        }
     }
 }
