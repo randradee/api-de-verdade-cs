@@ -16,6 +16,10 @@ namespace api_de_verdade.Mapping
             CreateMap<GetCategoryDto, Category>();
             CreateMap<Category, GetCategoryDto>()
                 .ForMember(x => x.Name, opt => opt.Condition(src => src.Name != null));
+
+            CreateMap<UpdateCategoryDto, Category>();
+            CreateMap<Category, UpdateCategoryDto>()
+                .ForMember(x => x.Name, opt => opt.Condition(src => src.Name != null));
         }
     }
 }

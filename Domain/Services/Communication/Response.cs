@@ -6,8 +6,8 @@
         public string Message { get; init; }
         public T? Resource { get; init; }
 
-        public Response(T? resource) 
-        { 
+        public Response(T? resource)
+        {
             Success = true;
             Message = string.Empty;
             Resource = resource;

@@ -2,7 +2,7 @@
 
 namespace api_de_verdade.Domain.Dtos
 {
-    public record CreateCategoryDto
+    public record UpdateCategoryDto
         (
             [Required]
             [MaxLength(30)]

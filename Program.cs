@@ -1,4 +1,3 @@
-using AutoMapper;
 using api_de_verdade.Data.Contexts;
 using api_de_verdade.Domain.Repositories;
 using api_de_verdade.Domain.Services;

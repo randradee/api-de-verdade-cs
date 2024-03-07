@@ -1,5 +1,4 @@
 ﻿using api_de_verdade.Domain.Dtos;
-using api_de_verdade.Domain.DTOs;
 using api_de_verdade.Domain.Services;
 using api_de_verdade.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +16,25 @@ namespace api_de_verdade.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<GetCategoryDto>> GetCategoriesAsync()
+        public async Task<IActionResult> GetCategoriesAsync()
         {
-            return await _categoryService.ListAsync();
+            var result = await _categoryService.ListAsync();
+
+            return Ok(result.Resource);
         }
 
         [HttpGet("{id}")]
-        public async Task<GetCategoryDto> GetCategoryById(int id)
+        public async Task<IActionResult> GetCategoryById(int id)
         {
-            return await _categoryService.GetByIdAsync(id);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+
+            var result = await _categoryService.FindByIdAsync(id);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok(result.Resource);
         }
 
         [HttpPost]
@@ -33,16 +42,27 @@ namespace api_de_verdade.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-            
+
             var result = await _categoryService.CreateAsync(createCategoryDto);
 
             if (!result.Success)
-            {
                 return BadRequest(result.Message);
-            }
 
             return Created(result.Message, result.Resource);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategoryById(int id, [FromBody] UpdateCategoryDto updateCategoryDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+
+            var result = await _categoryService.UpdateAsync(id, updateCategoryDto);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            return Ok(result.Resource);
+        }
     }
 }

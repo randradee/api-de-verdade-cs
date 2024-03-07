@@ -22,20 +22,29 @@ namespace api_de_verdade.Services
         }
 
 
-        public async Task<IEnumerable<GetCategoryDto>> ListAsync()
+        public async Task<Response<IEnumerable<GetCategoryDto>>> ListAsync()
         {
             var categories = await _categoryRepository.ListAsync();
             var categoriesDto = _mapper.Map<IEnumerable<Category>, IEnumerable<GetCategoryDto>>(categories);
 
-            return categoriesDto;
+
+            return new Response<IEnumerable<GetCategoryDto>>(categoriesDto);
         }
 
-        public async Task<GetCategoryDto> GetByIdAsync(int id)
+        public async Task<Response<GetCategoryDto>> FindByIdAsync(int id)
         {
-            var category = await _categoryRepository.GetAsync(id);
-            var categoryDto = _mapper.Map<Category, GetCategoryDto>(category);
+            try
+            {
+                var category = await _categoryRepository.FindByIdAsync(id);
+                var categoryDto = _mapper.Map<Category, GetCategoryDto>(category);
 
-            return categoryDto;
+                return new Response<GetCategoryDto>(categoryDto);
+            }
+            catch (Exception ex)
+            {
+                return new Response<GetCategoryDto>($"erro: {ex.Message}");
+            }
+
         }
 
         public async Task<Response<CreateCategoryDto>> CreateAsync(CreateCategoryDto createCategoryDto)
@@ -51,10 +60,37 @@ namespace api_de_verdade.Services
 
                 return new Response<CreateCategoryDto>(responseCategoryDto);
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                return new Response<CreateCategoryDto>($"erro: {e.Message}");
+                return new Response<CreateCategoryDto>($"erro: {ex.Message}");
             }
+        }
+
+        public async Task<Response<UpdateCategoryDto>> UpdateAsync(int id, UpdateCategoryDto updateCategoryDto)
+        {
+            var newCategory = _mapper.Map<UpdateCategoryDto, Category>(updateCategoryDto);
+
+            var categoryToUpdate = await _categoryRepository.FindByIdAsync(id);
+
+            if (categoryToUpdate == null)
+                return new Response<UpdateCategoryDto>("Categoria não encontrada");
+
+            try
+            {
+                categoryToUpdate.Name = newCategory.Name;
+
+                _categoryRepository.Update(categoryToUpdate);
+                await _unitOfWork.CompleteAsync();
+
+                var responseCategoryDto = _mapper.Map<Category, UpdateCategoryDto>(categoryToUpdate);
+
+                return new Response<UpdateCategoryDto>(responseCategoryDto);
+            }
+            catch (Exception ex)
+            {
+                return new Response<UpdateCategoryDto>($"erro: {ex.Message}");
+            }
+
         }
     }
 }

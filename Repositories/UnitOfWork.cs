@@ -7,7 +7,7 @@ namespace api_de_verdade.Repositories
     {
         private readonly AppDbContext _context;
 
-        public UnitOfWork(AppDbContext context) 
+        public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }
