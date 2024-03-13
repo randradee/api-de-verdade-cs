@@ -93,7 +93,7 @@ namespace api_de_verdade.Services
 
             currentProduct.Name = product.Name;
             currentProduct.QuantityInPackage = product.QuantityInPackage;
-            currentProduct.UnitOfMeasurement = Enum.GetValues<EUnitOfMeasurement>()[product.UnitOfMeasurement];
+            currentProduct.UnitOfMeasurement = product.UnitOfMeasurement;
             currentProduct.CategoryId = product.CategoryId;
 
             try

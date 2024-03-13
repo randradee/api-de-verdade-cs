@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using api_de_verdade.Domain.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace api_de_verdade.Domain.Dtos.ProductDtos
 {
-    public record CreateProductDto(
+    public record CreateProductDto
+        (
             [Required]
             [MaxLength(50)]
             string Name,
@@ -12,8 +14,7 @@ namespace api_de_verdade.Domain.Dtos.ProductDtos
             short QuantityInPackage,
 
             [Required]
-            [Range(1, 5)]
-            int UnitOfMeasurement,
+            EUnitOfMeasurement UnitOfMeasurement,
 
             [Required]
             int CategoryId
