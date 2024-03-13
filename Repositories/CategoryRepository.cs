@@ -7,14 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api_de_verdade.Repositories
 {
-    public class CategoryRepository : BaseRepository, ICategoryRepository
+    public class CategoryRepository(AppDbContext context) : BaseRepository(context), ICategoryRepository
     {
-
-        public CategoryRepository(AppDbContext context) : base(context)
-        {
-
-        }
-
         public async Task<IEnumerable<Category>> ListAsync()
         {
             return await _context.Categories

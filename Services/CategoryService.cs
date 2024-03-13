@@ -1,6 +1,7 @@
 ﻿using api_de_verdade.Domain.Dtos;
-using api_de_verdade.Domain.DTOs;
+using api_de_verdade.Domain.Dtos.CategoryDtos;
 using api_de_verdade.Domain.Models;
+using api_de_verdade.Domain.Models.Enums;
 using api_de_verdade.Domain.Repositories;
 using api_de_verdade.Domain.Services;
 using api_de_verdade.Domain.Services.Communication;

@@ -1,4 +1,4 @@
-﻿namespace api_de_verdade.Domain.DTOs
+﻿namespace api_de_verdade.Domain.Dtos.CategoryDtos
 {
     public record GetCategoryDto
         (

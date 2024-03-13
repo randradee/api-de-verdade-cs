@@ -11,5 +11,14 @@ namespace api_de_verdade.Domain.Models
 
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        public Product() { }
+        public Product(string name, short quantityInPackage, int unitOfMeasurement, int categoryId)
+        {
+            Name = name;
+            QuantityInPackage = quantityInPackage;
+            UnitOfMeasurement = Enum.GetValues<EUnitOfMeasurement>()[unitOfMeasurement];
+            CategoryId = categoryId;
+        }
     }
 }

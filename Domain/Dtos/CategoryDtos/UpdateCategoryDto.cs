@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace api_de_verdade.Domain.Dtos
+namespace api_de_verdade.Domain.Dtos.CategoryDtos
 {
     public record UpdateCategoryDto
         (

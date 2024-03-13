@@ -1,4 +1,5 @@
 ﻿using api_de_verdade.Domain.Dtos;
+using api_de_verdade.Domain.Dtos.CategoryDtos;
 using api_de_verdade.Domain.Services;
 using api_de_verdade.Extensions;
 using Microsoft.AspNetCore.Mvc;

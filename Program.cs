@@ -10,13 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// config de injeção de dependência - categories
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+// config de injeção de dependência
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+
 // config do automapper
-builder.Services.AddAutoMapper(typeof(CategoryProfile));
+builder.Services.AddAutoMapper(typeof(CategoryProfile), typeof(ProductProfile));
 
 
 builder.Services.AddControllers();
