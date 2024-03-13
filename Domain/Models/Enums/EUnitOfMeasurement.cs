@@ -5,18 +5,18 @@ namespace api_de_verdade.Domain.Models.Enums
     public enum EUnitOfMeasurement : byte
     {
         [Description("UN")]
-        Unity = 1,
+        Unity,
 
         [Description("MG")]
-        Milligram = 2,
+        Milligram,
 
         [Description("G")]
-        Gram = 3,
+        Gram,
 
         [Description("KG")]
-        Kilogram = 4,
+        Kilogram,
 
         [Description("L")]
-        Liter = 5
+        Liter
     }
 }

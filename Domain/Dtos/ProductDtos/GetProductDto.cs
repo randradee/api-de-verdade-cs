@@ -1,4 +1,5 @@
 ﻿using api_de_verdade.Domain.Dtos.CategoryDtos;
+using api_de_verdade.Domain.Models.Enums;
 
 namespace api_de_verdade.Domain.Dtos.ProductDtos
 {

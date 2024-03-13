@@ -24,7 +24,7 @@ namespace api_de_verdade.Data.Contexts
             builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(50);
             builder.Entity<Product>().Property(p => p.QuantityInPackage).IsRequired();
-            builder.Entity<Product>().Property(p => p.UnitOfMeasurement).IsRequired();
+            builder.Entity<Product>().Property(p => p.UnitOfMeasurement).IsRequired().HasConversion<string>();
 
 
         }
