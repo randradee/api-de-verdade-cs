@@ -33,19 +33,7 @@ namespace api_de_verdade.Repositories
             _context.Categories.Update(category);
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            var categoryToDelete = await _context.Categories
-                .AsNoTracking()
-                .FirstAsync(c => c.Id == id) ?? throw new Exception("Categoria a ser excluída não existe");
-
-
-            _context.Categories.Remove(categoryToDelete);
-
-            await _context.SaveChangesAsync();
-        }
-
-        public void DeleteAsync(Category category)
+        public void Delete(Category category)
         {
             _context.Categories.Remove(category);
         }

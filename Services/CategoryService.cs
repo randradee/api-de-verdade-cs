@@ -103,7 +103,7 @@ namespace api_de_verdade.Services
 
             try
             {
-                _categoryRepository.DeleteAsync(categoryToRemove);
+                _categoryRepository.Delete(categoryToRemove);
                 await _unitOfWork.CompleteAsync();
 
                 var response = _mapper.Map<Category, GetCategoryDto>(categoryToRemove);

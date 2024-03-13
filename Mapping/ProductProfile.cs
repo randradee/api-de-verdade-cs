@@ -1,6 +1,5 @@
 ﻿using api_de_verdade.Domain.Dtos.ProductDtos;
 using api_de_verdade.Domain.Models;
-using api_de_verdade.Domain.Models.Enums;
 using api_de_verdade.Extensions;
 using AutoMapper;
 

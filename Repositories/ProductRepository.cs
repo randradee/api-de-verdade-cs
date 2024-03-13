@@ -19,11 +19,29 @@ namespace api_de_verdade.Repositories
                 .ToListAsync();
         }
 
+        public async Task<Product?> FindByIdAsync(int id)
+        {
+            return await _context.Products
+                .Include(c => c.Category)
+                .FirstOrDefaultAsync(x => x.Id == id);
+                
+        }
+
         public async Task<Product> CreateAsync(Product product)
         {
-            await _context.AddAsync(product);
+            await _context.Products.AddAsync(product);
 
             return product;
+        }
+
+        public void Update(Product product)
+        {
+            _context.Products.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            _context.Products.Remove(product);
         }
     }
 }

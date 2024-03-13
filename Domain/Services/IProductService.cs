@@ -8,7 +8,8 @@ namespace api_de_verdade.Domain.Services
     {
         Task<Response<IEnumerable<GetProductDto>>> GetProductsAsync();
         Task<Response<CreateProductDto>> CreateProductAsync(CreateProductDto product);
-
-
+        Task<Response<GetProductDto>> FindByIdAsync(int id);
+        Task<Response<UpdateProductDto>> UpdateProduct(int id, UpdateProductDto product);
+        Task<Response<GetProductDto>> DeleteProduct(int id);
     }
 }

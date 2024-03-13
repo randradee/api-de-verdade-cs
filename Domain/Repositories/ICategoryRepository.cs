@@ -8,6 +8,6 @@ namespace api_de_verdade.Domain.Repositories
         Task<Category?> FindByIdAsync(int id);
         Task<Category> CreateAsync(Category category);
         void Update(Category category);
-        void DeleteAsync(Category category);
+        void Delete(Category category);
     }
 }
